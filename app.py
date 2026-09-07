@@ -25,6 +25,14 @@ order_margin["Order_Discount_Group"] = pd.Categorical(
     order_margin["Order_Discount_Group"], categories=group_order, ordered=True
 )
 
+# ---- 0. Phân bố Discount ----
+st.header("0. Phân bố đơn hàng theo mức Discount")
+fig = px.bar(discount_kpi, x="Order_Discount_Group", y="Orders",
+             title="Số lượng đơn hàng theo nhóm Discount")
+fig.update_layout(title_font_size=15, height=380,
+                   xaxis_title="Nhóm Discount", yaxis_title="Số đơn hàng")
+st.plotly_chart(fig, use_container_width=True)
+
 # ---- 1. KPI tổng quan ----
 st.header("1. Tổng quan KPI theo nhóm Discount")
 st.dataframe(discount_kpi, use_container_width=True)
@@ -87,3 +95,13 @@ fig = px.imshow(corr_matrix, text_auto=".2f", color_continuous_scale="RdBu_r",
                  zmin=-1, zmax=1, title="Ma trận tương quan (Spark MLlib)")
 fig.update_layout(title_font_size=15, height=450)
 st.plotly_chart(fig, use_container_width=True)
+
+st.subheader("Một điểm đáng lưu ý")
+st.markdown("""
+Hệ số tương quan Discount–Profit ở cấp **đơn hàng** (đã gộp) thấp hơn nhiều 
+so với xu hướng giảm rõ rệt khi nhìn theo **trung bình từng nhóm** Discount 
+(29.54% → -31.38%). Điều này không mâu thuẫn — việc gộp dữ liệu theo nhóm 
+làm mượt phương sai cá nhân giữa các đơn hàng, khiến xu hướng nhóm trông 
+rõ ràng hơn so với tương quan tính trên từng bản ghi riêng lẻ. Đây là điểm 
+cần lưu ý khi diễn giải kết quả tương quan.
+""")
