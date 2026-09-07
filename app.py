@@ -26,7 +26,7 @@ order_margin["Order_Discount_Group"] = pd.Categorical(
 )
 
 # ---- 1. Phân bố Discount ----
-st.markdown("<h4 style='font-size:25px;'>1. Tổng quan KPI theo nhóm Discount</h4>", unsafe_allow_html=True)
+st.markdown("<h4 style='font-size:25px;'>1. Phân bố Discount Discount</h4>", unsafe_allow_html=True)
 fig = px.bar(discount_kpi, x="Order_Discount_Group", y="Orders",
              title="Số lượng đơn hàng theo nhóm Discount")
 fig.update_layout(title_font_size=13, height=380,
@@ -34,7 +34,7 @@ fig.update_layout(title_font_size=13, height=380,
 st.plotly_chart(fig, use_container_width=True)
 
 # ---- 2. KPI tổng quan ----
-st.header("2. Tổng quan KPI theo nhóm Discount")
+st.markdown("<h4 style='font-size:25px;'>2. Tổng quan KPI theo nhóm Discount</h4>", unsafe_allow_html=True)
 st.dataframe(discount_kpi, use_container_width=True)
 
 col1, col2 = st.columns(2)
@@ -50,7 +50,7 @@ with col2:
     st.plotly_chart(fig, use_container_width=True)
 
 # ---- 3. Profit Margin Trend ----
-st.header("3. Xu hướng Profit Margin theo nhóm Discount")
+st.markdown("<h4 style='font-size:25px;'>3. Xu hướng Profit Margin theo nhóm Discount</h4>", unsafe_allow_html=True)
 fig = px.line(discount_kpi, x="Order_Discount_Group", y="Profit_Margin", markers=True,
               title="Xu hướng Profit Margin theo nhóm Discount")
 fig.add_hline(y=0, line_color="red")
@@ -59,7 +59,7 @@ fig.update_layout(title_font_size=15, height=400,
 st.plotly_chart(fig, use_container_width=True)
 
 # ---- 4. AOV theo nhóm Discount ----
-st.header("4. Giá trị đơn hàng trung bình (AOV) theo nhóm Discount")
+st.markdown("<h4 style='font-size:25px;'>4. Giá trị đơn hàng trung bình (AOV) theo nhóm Discount</h4>", unsafe_allow_html=True)
 fig = px.bar(discount_kpi, x="Order_Discount_Group", y="Sales_per_Order",
              title="AOV - Doanh thu trung bình mỗi đơn theo nhóm Discount")
 fig.update_layout(title_font_size=15, height=400,
@@ -67,7 +67,7 @@ fig.update_layout(title_font_size=15, height=400,
 st.plotly_chart(fig, use_container_width=True)
 
 # ---- 5. Boxplot phân phối Profit Margin ----
-st.header("5. Phân phối Profit Margin theo nhóm Discount")
+st.markdown("<h4 style='font-size:25px;'>5. Phân phối Profit Margin theo nhóm Discount</h4>", unsafe_allow_html=True)
 fig = px.box(order_margin, x="Order_Discount_Group", y="Order_Profit_Margin",
              title="Phân phối Profit Margin theo nhóm Discount")
 fig.add_hline(y=0, line_color="red")
@@ -76,7 +76,7 @@ fig.update_layout(title_font_size=15, height=450,
 st.plotly_chart(fig, use_container_width=True)
 
 # ---- 6. Profit Margin theo Category ----
-st.header("6. Xu hướng Profit Margin theo Category và nhóm Discount")
+st.markdown("<h4 style='font-size:25px;'>6. Xu hướng Profit Margin theo Category và nhóm Discount</h4>", unsafe_allow_html=True)
 category_discount["Discount_Group"] = pd.Categorical(
     category_discount["Discount_Group"], categories=group_order, ordered=True
 )
@@ -90,7 +90,7 @@ fig.update_layout(title_font_size=15, height=450,
 st.plotly_chart(fig, use_container_width=True)
 
 # ---- 7. Correlation matrix ----
-st.header("7. Ma trận tương quan")
+st.markdown("<h4 style='font-size:25px;'>7. Ma trận tương quan</h4>", unsafe_allow_html=True)
 fig = px.imshow(corr_matrix, text_auto=".2f", color_continuous_scale="RdBu_r",
                  zmin=-1, zmax=1, title="Ma trận tương quan (Spark MLlib)")
 fig.update_layout(title_font_size=15, height=450)
