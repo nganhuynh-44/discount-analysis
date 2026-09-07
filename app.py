@@ -26,7 +26,7 @@ order_margin["Order_Discount_Group"] = pd.Categorical(
 )
 
 # ---- 1. Phân bố Discount ----
-st.header("1. Phân bố đơn hàng theo mức Discount")
+st.markdown("<h4 style='font-size:18px;'>1. Tổng quan KPI theo nhóm Discount</h4>", unsafe_allow_html=True)
 fig = px.bar(discount_kpi, x="Order_Discount_Group", y="Orders",
              title="Số lượng đơn hàng theo nhóm Discount")
 fig.update_layout(title_font_size=13, height=380,
@@ -41,7 +41,7 @@ col1, col2 = st.columns(2)
 with col1:
     fig = px.bar(discount_kpi, x="Order_Discount_Group", y="Sales",
                  title="Total Sales by Discount Group")
-    fig.update_layout(title_font_size=13, height=380)
+    fig.update_layout(title_font_size=15, height=380)
     st.plotly_chart(fig, use_container_width=True)
 with col2:
     fig = px.bar(discount_kpi, x="Order_Discount_Group", y="Quantity",
@@ -54,7 +54,7 @@ st.header("3. Xu hướng Profit Margin theo nhóm Discount")
 fig = px.line(discount_kpi, x="Order_Discount_Group", y="Profit_Margin", markers=True,
               title="Xu hướng Profit Margin theo nhóm Discount")
 fig.add_hline(y=0, line_color="red")
-fig.update_layout(title_font_size=13, height=400,
+fig.update_layout(title_font_size=15, height=400,
                    xaxis_title="Nhóm Discount", yaxis_title="Profit Margin (%)")
 st.plotly_chart(fig, use_container_width=True)
 
@@ -62,7 +62,7 @@ st.plotly_chart(fig, use_container_width=True)
 st.header("4. Giá trị đơn hàng trung bình (AOV) theo nhóm Discount")
 fig = px.bar(discount_kpi, x="Order_Discount_Group", y="Sales_per_Order",
              title="AOV - Doanh thu trung bình mỗi đơn theo nhóm Discount")
-fig.update_layout(title_font_size=13, height=400,
+fig.update_layout(title_font_size=15, height=400,
                    xaxis_title="Nhóm Discount", yaxis_title="AOV ($)")
 st.plotly_chart(fig, use_container_width=True)
 
@@ -71,7 +71,7 @@ st.header("5. Phân phối Profit Margin theo nhóm Discount")
 fig = px.box(order_margin, x="Order_Discount_Group", y="Order_Profit_Margin",
              title="Phân phối Profit Margin theo nhóm Discount")
 fig.add_hline(y=0, line_color="red")
-fig.update_layout(title_font_size=13, height=450,
+fig.update_layout(title_font_size=15, height=450,
                    xaxis_title="Nhóm Discount", yaxis_title="Profit Margin của đơn hàng (%)")
 st.plotly_chart(fig, use_container_width=True)
 
@@ -85,7 +85,7 @@ category_discount = category_discount.sort_values("Discount_Group")
 fig = px.line(category_discount, x="Discount_Group", y="Profit_Margin", color="Category",
               markers=True, title="Xu hướng Profit Margin theo Category và nhóm Discount")
 fig.add_hline(y=0, line_color="black")
-fig.update_layout(title_font_size=13, height=450,
+fig.update_layout(title_font_size=15, height=450,
                    xaxis_title="Nhóm Discount", yaxis_title="Profit Margin (%)")
 st.plotly_chart(fig, use_container_width=True)
 
@@ -93,15 +93,6 @@ st.plotly_chart(fig, use_container_width=True)
 st.header("7. Ma trận tương quan")
 fig = px.imshow(corr_matrix, text_auto=".2f", color_continuous_scale="RdBu_r",
                  zmin=-1, zmax=1, title="Ma trận tương quan (Spark MLlib)")
-fig.update_layout(title_font_size=13, height=450)
+fig.update_layout(title_font_size=15, height=450)
 st.plotly_chart(fig, use_container_width=True)
 
-st.subheader("Một điểm đáng lưu ý")
-st.markdown("""
-Hệ số tương quan Discount–Profit ở cấp **đơn hàng** (đã gộp) thấp hơn nhiều 
-so với xu hướng giảm rõ rệt khi nhìn theo **trung bình từng nhóm** Discount 
-(29.54% → -31.38%). Điều này không mâu thuẫn — việc gộp dữ liệu theo nhóm 
-làm mượt phương sai cá nhân giữa các đơn hàng, khiến xu hướng nhóm trông 
-rõ ràng hơn so với tương quan tính trên từng bản ghi riêng lẻ. Đây là điểm 
-cần lưu ý khi diễn giải kết quả tương quan.
-""")
