@@ -38,7 +38,9 @@ st.pyplot(fig)
 st.header("3. Distribution of Order Profit Margin (Boxplot)")
 data_by_group = [order_margin[order_margin["Order_Discount_Group"] == g]["Order_Profit_Margin"] for g in group_order]
 fig, ax = plt.subplots()
-ax.boxplot(data_by_group, labels=group_order, showfliers=False)
+bp = ax.boxplot(data_by_group, showfliers=False)
+ax.set_xticks(range(1, len(group_order) + 1))
+ax.set_xticklabels(group_order)
 ax.axhline(0, color="red")
 st.pyplot(fig)
 
