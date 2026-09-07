@@ -3,8 +3,8 @@ import pandas as pd
 import plotly.express as px
 
 st.set_page_config(page_title="Discount & Business KPI - E-commerce", layout="wide")
-st.title("Phân tích mối quan hệ giữa Discount và hiệu quả kinh doanh (E-commerce)")
-st.caption("Case study PySpark trên dataset Sample Superstore (Kaggle)")
+st.title("Phân tích mối quan hệ giữa Discount và Hiệu quả kinh doanh trong thương mại điện tử ")
+st.caption("Học viên thực hiện: Huỳnh Trúc Ngân")
 
 # ---- Đọc dữ liệu ----
 discount_kpi = pd.read_csv("discount_kpi.csv")
