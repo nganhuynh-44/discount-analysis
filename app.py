@@ -30,7 +30,7 @@ with col2:
     st.pyplot(fig)
 
 st.header("2. Profit Margin Trend by Discount Group")
-fig, ax = plt.subplots()
+fig, ax = plt.subplots(figsize=(5, 3.5))
 ax.plot(discount_kpi["Order_Discount_Group"], discount_kpi["Profit_Margin"], marker="o")
 ax.axhline(0, color="red")
 st.pyplot(fig)
