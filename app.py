@@ -26,7 +26,7 @@ order_margin["Order_Discount_Group"] = pd.Categorical(
 )
 
 # ---- 1. Phân bố Discount ----
-st.markdown("<h4 style='font-size:18px;'>1. Tổng quan KPI theo nhóm Discount</h4>", unsafe_allow_html=True)
+st.markdown("<h4 style='font-size:22px;'>1. Tổng quan KPI theo nhóm Discount</h4>", unsafe_allow_html=True)
 fig = px.bar(discount_kpi, x="Order_Discount_Group", y="Orders",
              title="Số lượng đơn hàng theo nhóm Discount")
 fig.update_layout(title_font_size=13, height=380,
