@@ -5,6 +5,7 @@ import plotly.express as px
 st.set_page_config(page_title="Discount & Business KPI - E-commerce", layout="wide")
 st.title("Phân tích mối quan hệ giữa Discount và Hiệu quả kinh doanh trong thương mại điện tử ")
 st.caption("Học viên thực hiện: Huỳnh Trúc Ngân")
+st.caption("Mã số học viên: C25611251")
 
 # ---- Đọc dữ liệu ----
 discount_kpi = pd.read_csv("discount_kpi.csv")
