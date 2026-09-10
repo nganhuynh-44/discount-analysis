@@ -3,7 +3,7 @@ import pandas as pd
 import plotly.express as px
 
 st.set_page_config(page_title="Discount & Business KPI - E-commerce", layout="wide")
-st.title("Phân tích mối quan hệ giữa Discount và Hiệu quả kinh doanh trong thương mại điện tử ")
+st.title("Phân tích mối quan hệ giữa mức giảm giá (Discount) và các chỉ số kinh doanh trong Ecommerce ")
 st.caption("Học viên thực hiện: Huỳnh Trúc Ngân")
 st.caption("Mã số học viên: C25611251")
 
