@@ -96,3 +96,27 @@ fig = px.imshow(corr_matrix, text_auto=".2f", color_continuous_scale="RdBu_r",
 fig.update_layout(title_font_size=15, height=450)
 st.plotly_chart(fig, use_container_width=True)
 
+# ---- 8. Phân khúc khách hàng bằng K-Means ----
+st.header("8. Phân khúc khách hàng theo Discount và hiệu quả kinh doanh (K-Means)")
+
+cluster_summary = pd.read_csv("cluster_summary.csv")
+customer_clusters = pd.read_csv("customer_clusters.csv")
+
+cluster_names = {
+    0: "Cụm 0 - Ổn định, ít phụ thuộc khuyến mãi",
+    1: "Cụm 1 - Mua thường xuyên, margin mỏng",
+    2: "Cụm 2 - Nhạy cảm ưu đãi, có lỗ",
+    3: "Cụm 3 - Khách hàng giá trị cao"
+}
+cluster_summary["Ten_Cum"] = cluster_summary["prediction"].map(cluster_names)
+customer_clusters["Ten_Cum"] = customer_clusters["prediction"].map(cluster_names)
+
+st.dataframe(cluster_summary[["Ten_Cum", "So_khach_hang", "Avg_Discount_TB",
+                               "Total_Sales_TB", "Total_Profit_TB", "Order_Count_TB"]],
+             use_container_width=True)
+
+fig = px.scatter(customer_clusters, x="Avg_Discount", y="Total_Profit", color="Ten_Cum",
+                  title="Phân khúc khách hàng theo Avg Discount và Total Profit")
+fig.update_layout(title_font_size=15, height=450,
+                   xaxis_title="Avg Discount", yaxis_title="Total Profit")
+st.plotly_chart(fig, use_container_width=True)
